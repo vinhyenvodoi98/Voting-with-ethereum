@@ -1,27 +1,134 @@
 .App {
   text-align: center;
+  color: white;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.account{
+  margin: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content{
+  margin: 0px;
+  height: 20vh;
+}
+
+.vote_area{
+  height: 60vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.vote_box{
+  background-color: aliceblue;
+  width: 22%;
+  height: 100%;
+  border-radius: 2%;
+}
+
+.head_vote{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-image:
+    radial-gradient(
+      circle at top right,
+      #FD6863,
+      #FFD36F
+    );
+  height: 37%;
+}
+
+.avatar{
+  margin-top: 32%;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.candidates{
+  color: black;
+  margin-top: 25%;
+  font-family: Fixed, monospace;
+  font-size: x-large;
+}
+
+.button{
+  cursor: pointer;
+  background-image: radial-gradient( circle at top right, #FD6863, #FFD36F );
+  border: 0;
+  height: 35px;
+  width: 83px;
+  font-weight: 600;
+  font-family: Helvetica, sans-serif;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button:hover{
+
 }
+
+.score{
+  display: flex;
+  margin: auto;
+  width: 40%;
+  flex-direction: row;
+  justify-content: space-around;
+  color: black;
+}
+
+.score p{
+  margin: 0;
+}
+
+.backgroundbar{
+  background-image: radial-gradient( circle at top right, #FD6863, #FFD36F );
+}
+
+.progress-bar {
+  margin: 20px 20%;
+}
+
+.progress-bar .value > div {
+  text-align: center;
+}
+
+.progress-bar .graduation {
+  text-align: center;
+}
+
+.progress-bar .bar > div {
+  display: inline-block;
+  height: 10px;
+}
+
+.progress-bar .bar > div:first-of-type {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.progress-bar .bar > div:last-of-type {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+/* 
+.content_position{
+  position: absolute;
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+} */
+
+
+
+
 
 @keyframes App-logo-spin {
   from {
