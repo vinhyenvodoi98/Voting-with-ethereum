@@ -27,7 +27,7 @@ class App extends Component {
     await web3.eth.getBalance(this.state.account).then((balance)=>{
         balance = web3.utils.fromWei(balance);
         this.setState({balance})
-    }) 
+    })
   }
 
 
@@ -44,12 +44,12 @@ class App extends Component {
             <h3>Who will be the president of VietNam</h3>
           </div>
         </div>
-        
+
         <div className="vote_area">
-          <div className="vote_box"> 
-            <div className="head_vote"> 
+          <div className="vote_box">
+            <div className="head_vote">
               <span>
-                <img className="avatar" src="https://picsum.photos/200/300" alt="Logo" /> 
+                <img className="avatar" src="https://picsum.photos/200/300" alt="Logo" />
               </span>
             </div>
             <div className="candidates">
@@ -63,7 +63,7 @@ class App extends Component {
                 <div className="backgroundbar" style={{'width': this.state.value + '%'}}>
                 </div>
                 <div style={{'backgroundColor': '#d3d3d3', 'width': (100-this.state.value) + '%'}}>
-                </div>  
+                </div>
               </div>
             </div>
             <div className="score">
