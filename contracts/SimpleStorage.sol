@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.24;
 
 contract Voting {
     event AddedCandidate(uint candidateID);
@@ -8,7 +8,7 @@ contract Voting {
     }
 
     struct Candidate {
-        bytes32 name;
+        string name;
         bool doesExist;
     }
 
@@ -19,10 +19,10 @@ contract Voting {
     mapping (uint => Voter) voters;
     mapping (address => bool ) Voted;
 
-    function addCandidate(bytes32 name) public {
+    function addCandidate(string name) public {
         uint candidateID = numCandidates++;
         candidates[candidateID] = Candidate(name,true);
-        AddedCandidate(candidateID);
+        emit AddedCandidate(candidateID);
     }
 
     function vote(uint candidateID) public {
@@ -54,7 +54,7 @@ contract Voting {
         return numVoters;
     }
 
-    function getCandidate(uint candidateID) public view returns (uint,bytes32) {
+    function getCandidate(uint candidateID) public view returns (uint,string) {
         return (candidateID,candidates[candidateID].name);
     }
 }
