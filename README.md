@@ -1,8 +1,8 @@
-#Secure Voting System using Ethereum's Blockchain
+# Secure Voting System using Ethereum's Blockchain
 
 **App Interface**
 
-![App_interface](https://github.com/vinhyenvodoi98/Voting-with-ethereum/tree/master/image/image_2019_4_26.png)
+![App_interface](https://github.com/vinhyenvodoi98/Voting-with-ethereum/blob/master/image/image_2019_4_26.png)
 
 Essentially, a great decentralized application utilizing blockchain technology allows you perform the same actions you would today (like transferring money) without a trusted third party. The best dApps have a specific real world use-case that leverages the unique characteristics of blockchain.
 
