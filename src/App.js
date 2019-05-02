@@ -30,10 +30,9 @@ class App extends Component {
         this.setState({balance})
     })
 
-    const contractAdress = '0x17f610e911587c1794240f50406ee84e7f1bd3cc';
+    const contractAdress = '0x4F884Bfa166FB5692E50386ca1cde05C087E3410';
     const myContract = new web3.eth.Contract(Voting.abi,contractAdress);
     this.setState({myContract : myContract})
-    var candidates = []
     var numberOfCandidates = await myContract.methods.getNumOfCandidates().call({
       from: this.state.account
     })
@@ -44,26 +43,35 @@ class App extends Component {
     var all = web3.utils.hexToNumber(allvote._hex)
     this.setState({allvote: all})
 
-    for(var i = 0;i< num;i++){
-      let candidate ={
-        id : 0,
-        name :"",
-        voted :0,
-        value :0
-      };
-      var ca1 = await myContract.methods.getCandidate(i).call({
-        from : this.state.account
-      })
-      var voted = await myContract.methods.totalVotes(i).call({
-        from : this.state.account
-      })
-      candidate.id = i;
-      candidate.name = ca1[1];
-      candidate.voted = web3.utils.hexToNumber(voted._hex);
-      candidate.value = Math.floor(voted / all *100);
-      candidates.push(candidate)
-    }
-    this.setState({candidates: candidates})
+    this.interval = setInterval(async()=>{
+      var candidates = []
+      for(var i = 0;i< num;i++){
+        let candidate ={
+          id : 0,
+          name :"",
+          avatar : "",
+          voted :0,
+          value :0
+        };
+        var ca1 = await myContract.methods.getCandidate(i).call({
+          from : this.state.account
+        })
+        var voted = await myContract.methods.totalVotes(i).call({
+          from : this.state.account
+        })
+        candidate.id = i;
+        candidate.name = ca1[1];
+        candidate.avatar = ca1[2];
+        candidate.voted = web3.utils.hexToNumber(voted._hex);
+        candidate.value = Math.floor(voted / all *100);
+        candidates.push(candidate)
+      }
+      this.setState({candidates: candidates})
+    },5000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   Vote(id){
@@ -93,7 +101,7 @@ class App extends Component {
               <div key={candidate.id} className="vote_box">
                 <div className="head_vote">
                   <span>
-                    <img className="avatar" src="https://picsum.photos/200/300" alt="Logo" />
+                    <img className="avatar" src={candidate.avatar} alt="Logo" />
                   </span>
                 </div>
                 <div className="candidates">
