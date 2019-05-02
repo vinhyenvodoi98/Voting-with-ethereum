@@ -130,8 +130,17 @@ class App extends Component {
         );
       }else{
         return(
-          <div>
+          <div className="App">
+            <div >
+              <p className="account">{this.state.account}</p>
+              <p className="account">{this.state.balance}</p>
+            </div>
 
+            <div className="content">
+              <div className="content_position">
+                <h3>Who will be the president of VietNam</h3>
+              </div>
+            </div>
           </div>
         )
       }
