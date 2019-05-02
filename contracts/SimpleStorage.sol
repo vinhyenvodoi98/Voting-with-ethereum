@@ -9,6 +9,7 @@ contract Voting {
 
     struct Candidate {
         string name;
+        string avatar;
         bool doesExist;
     }
 
@@ -19,9 +20,9 @@ contract Voting {
     mapping (uint => Voter) voters;
     mapping (address => bool ) Voted;
 
-    function addCandidate(string name) public {
+    function addCandidate(string name, string avatar) public {
         uint candidateID = numCandidates++;
-        candidates[candidateID] = Candidate(name,true);
+        candidates[candidateID] = Candidate(name,avatar,true);
         emit AddedCandidate(candidateID);
     }
 
@@ -54,7 +55,7 @@ contract Voting {
         return numVoters;
     }
 
-    function getCandidate(uint candidateID) public view returns (uint,string) {
-        return (candidateID,candidates[candidateID].name);
+    function getCandidate(uint candidateID) public view returns (uint,string,string) {
+        return (candidateID,candidates[candidateID].name,candidates[candidateID].avatar);
     }
 }
