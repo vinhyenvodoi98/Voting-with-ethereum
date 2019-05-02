@@ -10,7 +10,6 @@ class App extends Component {
         account : '0x0',
         balance : '',
         color: '#b53471',
-        value: Math.floor(3/7*100),
         candidates: [],
         myContract : [],
         allvote : 0
@@ -22,7 +21,7 @@ class App extends Component {
     const web3 = await new Web3(Web3.givenProvider);
 
     await web3.eth.getCoinbase().then((account)=>{
-        this.setState({account})
+      this.setState({account})
     });
 
     await web3.eth.getBalance(this.state.account).then((balance)=>{
@@ -30,20 +29,22 @@ class App extends Component {
         this.setState({balance})
     })
 
-    const contractAdress = '0x4F884Bfa166FB5692E50386ca1cde05C087E3410';
+    const contractAdress = '0xc586440f38420157802453185ddf1bba45d93f68';
     const myContract = new web3.eth.Contract(Voting.abi,contractAdress);
     this.setState({myContract : myContract})
     var numberOfCandidates = await myContract.methods.getNumOfCandidates().call({
       from: this.state.account
     })
     var num =web3.utils.hexToNumber(numberOfCandidates._hex)
-    var allvote = await myContract.methods.getNumOfVoters().call({
-      from :this.state.account
-    })
-    var all = web3.utils.hexToNumber(allvote._hex)
-    this.setState({allvote: all})
 
     this.interval = setInterval(async()=>{
+
+      var allvote = await myContract.methods.getNumOfVoters().call({
+        from :this.state.account
+      })
+      var all = web3.utils.hexToNumber(allvote._hex)
+      this.setState({allvote: all})
+
       var candidates = []
       for(var i = 0;i< num;i++){
         let candidate ={
